@@ -1,0 +1,169 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@theme {
+  /* PRIMARY */
+  --color-primary-100: #e8edf5;
+  --color-primary-200: #c0cfdf;
+  --color-primary-300: #7a9bbf;
+  --color-primary-400: #3a6499;
+  --color-primary-450: #123c87;
+  --color-primary-500: #1565c0;
+  --color-primary-600: #071830;
+  --color-primary-700: #040f1e;
+
+  /* SECONDARY */
+  --color-secondary-100: #eff6ff;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #7db4f5;
+  --color-secondary-400: #3b82f6;
+  --color-secondary-500: #1565c0;
+  --color-secondary-600: #0d47a1;
+  --color-secondary-700: #082d6a;
+
+  /* PINK */
+  --color-pink-500: #D953A8;
+  --color-pink-600: #b118ae;
+
+  /* ACCENT */
+  --color-accent-100: #fffbeb;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #92400e;
+
+  /* NEUTRAL (light UI) */
+  --color-neutral-100: #f0f4f8;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #374151;
+  --color-neutral-700: #111827;
+
+  /* STATUS */
+  --color-error-50: #fef2f2;
+  --color-success-500: #16a34a;
+  --color-error-500: #dc2626;
+  --color-warning-500: #ea580c;
+  --color-info-500: #0891b2;
+
+  /* Shadow */
+  --shadow-accent-600: 1px 1px 24px 3px var(--color-accent-600);
+  --shadow-secondary-600: 1px 1px 24px 3px var(--color-secondary-600);
+  --shadow-primary-500: 1px 1px 24px 3px var(--color-primary-500);
+  --shadow-neutral-400: 0px 4px 4px 0px var(--color-neutral-400);
+  --shadow-dark: 0px 4px 4px 0px  color-mix(in srgb, var(--color-neutral-700), transparent 80%);
+  --shadow-dark-2: 2px 0px 10px 6px color-mix(in srgb, var(--color-secondary-400), transparent 80%);
+  
+  /* FONTS */
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-syne: "Syne", sans-serif;
+
+  --inset-shadow-accent-500: inset 10px 0px 0px 0px var(--color-accent-500);
+  --inset-shadow-primary-500: inset 10px 0px 0px 0px var(--color-primary-500);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Apply to the element you want to hide the scrollbar for */
+.no-scrollbar {
+  /* For Firefox */
+  scrollbar-width: none;
+
+  /* For Internet Explorer and Edge */
+  -ms-overflow-style: none;
+}
+
+/* For Chrome, Safari, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* DARK THEME */
+.dark {
+  /* @theme { */
+  /* PRIMARY (slightly brighter for contrast) */
+  --color-primary-100: #040f1e;
+  --color-primary-200: #071830;
+  --color-primary-300: #0a1f44;
+  --color-primary-400: #3a6499;
+  --color-primary-450: #8fb0e3;
+  --color-primary-500: #7a9bbf;
+  --color-primary-600: #c0cfdf;
+  --color-primary-700: #e8edf5;
+
+  /* SECONDARY (more vibrant in dark) */
+  --color-secondary-100: #082d6a;
+  --color-secondary-200: #0d47a1;
+  --color-secondary-300: #1565c0;
+  --color-secondary-400: #3b82f6;
+  --color-secondary-500: #7db4f5;
+  --color-secondary-600: #bfdbfe;
+  --color-secondary-700: #eff6ff;
+
+  /* PINK */
+  --color-pink-500: #D953A8;
+
+  /* ACCENT (pop more in dark UI) */
+  --color-accent-100: #92400e;
+  --color-accent-200: #d97706;
+  --color-accent-300: #f59e0b;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #fcd34d;
+  --color-accent-600: #fde68a;
+  --color-accent-700: #fffbeb;
+
+  /* NEUTRAL (true dark UI scale) */
+  --color-neutral-100: #0b1220; /* app background */
+  --color-neutral-200: #111827; /* cards */
+  --color-neutral-300: #1f2937; /* borders */
+  --color-neutral-400: #374151; /* subtle borders */
+  --color-neutral-500: #6b7280; /* secondary text */
+  --color-neutral-600: #d1d5db; /* body text */
+  --color-neutral-700: #f9fafb; /* headings */
+
+  /* STATUS (slightly brighter for visibility) */
+  --color-error-50: #fef2f2;
+  --color-success-500: #22c55e;
+  --color-error-500: #ef4444;
+  --color-warning-500: #f97316;
+  --color-info-500: #06b6d4;
+  /* } */
+}
+
+@keyframes pulse-fast {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 0.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite ease-in-out;
+}
