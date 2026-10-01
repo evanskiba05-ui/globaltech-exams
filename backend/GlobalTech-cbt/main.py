@@ -1450,31 +1450,31 @@ async def create_admin(body: CreateAdminIn, admin=Depends(get_current_admin), cu
         raise HTTPException(status_code=409, detail="Username already exists")
 
     # Send welcome email (outside the DB try/except)
-    if body.email:
-        msg = MIMEMultipart()
-        msg["From"] = os.getenv("MAIL_EMAIL")
-        msg["To"] = body.email
-        msg["Subject"] = "Welcome to GlobalTech CBT — Admin Account Created"
-        msg.attach(MIMEText(f"""
-        <h2>Welcome to GlobalTech CBT Admin Portal</h2>
-        <p>Your admin account has been created. Here are your login credentials:</p>
-        <p><b>Username:</b> {body.username}</p>
-        <p><b>Password:</b> {body.password}</p>
-        <p><b>Role:</b> {body.role}</p>
-        <p>Login at: <a href="{FRONTEND_URL}">{FRONTEND_URL}</a></p>
-        <p>Please change your password after first login.</p>
-        """, "html"))
-        try:
-            await aiosmtplib.send(
-                msg,
-                hostname="smtp.gmail.com",
-                port=587,
-                username=os.getenv("MAIL_EMAIL"),
-                password=os.getenv("MAIL_PASSWORD"),
-                start_tls=True,
-            )
-        except Exception as e:
-            print("❌ Welcome email error:", e)
+    # if body.email:
+    #     msg = MIMEMultipart()
+    #     msg["From"] = os.getenv("MAIL_EMAIL")
+    #     msg["To"] = body.email
+    #     msg["Subject"] = "Welcome to GlobalTech CBT — Admin Account Created"
+    #     msg.attach(MIMEText(f"""
+    #     <h2>Welcome to GlobalTech CBT Admin Portal</h2>
+    #     <p>Your admin account has been created. Here are your login credentials:</p>
+    #     <p><b>Username:</b> {body.username}</p>
+    #     <p><b>Password:</b> {body.password}</p>
+    #     <p><b>Role:</b> {body.role}</p>
+    #     <p>Login at: <a href="{FRONTEND_URL}">{FRONTEND_URL}</a></p>
+    #     <p>Please change your password after first login.</p>
+    #     """, "html"))
+    #     try:
+    #         await aiosmtplib.send(
+    #             msg,
+    #             hostname="smtp.gmail.com",
+    #             port=587,
+    #             username=os.getenv("MAIL_EMAIL"),
+    #             password=os.getenv("MAIL_PASSWORD"),
+    #             start_tls=True,
+    #         )
+    #     except Exception as e:
+    #         print("❌ Welcome email error:", e)
 
     return {"created": True, "username": body.username}
     
