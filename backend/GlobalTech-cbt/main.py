@@ -69,6 +69,7 @@ async def startup():
         db=DB_NAME, autocommit=True,
         cursorclass=aiomysql.DictCursor
     )
+print("DATABASE NAME:", DB_NAME)
 
 @app.on_event("shutdown")
 async def shutdown():
