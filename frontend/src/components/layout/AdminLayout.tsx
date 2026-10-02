@@ -1,6 +1,5 @@
 import { Outlet, useNavigate, useLocation } from "@tanstack/react-router";
-// import { useState } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import Sidebar from "./Sidebar";
 import TopHeader from "./TopHeader";
@@ -20,13 +19,8 @@ export const AdminLayout = () => {
     return <Outlet />;
   }
 
-  useEffect(() => {
-    if (!isAuthRoute && !isAdminAuthenticated) {
-      navigate({ to: "/admin/login" });
-    }
-  }, [isAuthRoute, isAdminAuthenticated, navigate]);
-
   if (!isAdminAuthenticated) {
+    navigate({ to: "/admin/login" });
     return null;
   }
 
