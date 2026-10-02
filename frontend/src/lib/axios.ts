@@ -8,12 +8,24 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  const adminToken = localStorage.getItem("admin_token");
-  const studentToken = localStorage.getItem("student_token");
-  const token = adminToken ?? studentToken;
+  const url = config.url || "";
+
+  const isAdminRequest = url.startsWith("/api/admin");
+  const isStudentRequest =
+    url.startsWith("/api/exam") || url.startsWith("/api/student");
+
+  let token: string | null = null;
+
+  if (isAdminRequest) {
+    token = localStorage.getItem("admin_token");
+  } else if (isStudentRequest) {
+    token = localStorage.getItem("student_token");
+  }
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
   return config;
 });
 
